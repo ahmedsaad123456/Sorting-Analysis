@@ -132,10 +132,10 @@ namespace sortlib
     //Selection Sort
     template <typename T>
     void selectionSort(T arr[] , int n){
-        for(int i = 0 ; i < n-2 ; i++)
+        for(int i = 0 ; i < n - 1 ; i++)
         {
             int min = i;
-            for(int j = i+1 ; j < n-1 ; j++)
+            for(int j = i+1 ; j < n  ; j++)
             {
                 if(arr[j] < arr[min])
                     min = j ;
@@ -145,7 +145,6 @@ namespace sortlib
         }
     }
    //--------------------------------------------
-
    //Print
     template <typename T>
     void print(T arr[] ,int n){
