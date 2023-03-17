@@ -145,6 +145,74 @@ namespace sortlib
         }
     }
    //--------------------------------------------
+   //Merge Sort
+   template<typename T>
+   void Merge(T arr[] , int left , int middle , int right)
+   {
+       int i , j , k;
+       int n1 = middle -left + 1;
+       int n2 = right - middle;
+
+       //create temporary
+       int L[n1] , R[n2] ;
+
+       //copy data to temporary arrays
+       for (i = 0 ; i < n1 ; i++)
+           L[i] = arr[left+i];
+       for (j = 0 ; j < n2 ; j++)
+           R[j] = arr[middle + j + 1];
+
+       //merge temporary arrays back into arr
+       i = 0;
+       j = 0;
+       k = left;
+       while (i < n1 && j < n2)
+       {
+           if(L[i] <= R[j])
+           {
+               arr[k] = L[i];
+               i++;
+           }
+           else
+           {
+               arr[k] = R[j];
+               j++;
+           }
+           k++;
+       }
+
+       //copy the remaining elements if any
+       while(i < n1)
+       {
+           arr[k] = L[i];
+           i++;
+           k++;
+       }
+
+       while (j < n2)
+       {
+           arr[k] = R[j];
+           j++;
+           k++;
+       }
+   }
+
+
+    template<typename T>
+    void MergeSort(T arr[] , int left , int right)
+    {
+        if (left < right)
+        {
+            int middle = left + (right-left) / 2;
+
+            //sort the first and second halves
+            MergeSort(arr , left , middle);
+            MergeSort(arr , middle+1 , right);
+
+            Merge(arr , left , middle , right);
+        }
+    }
+   //--------------------------------------------
    //Print
     template <typename T>
     void print(T arr[] ,int n){
