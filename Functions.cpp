@@ -138,6 +138,15 @@ namespace sortlib
         }
         cout<<endl;
     }
+    //--------------------------------------------
+    //Generate array of random numbers
+    template<typename T>
+    void generateRandom (T arr[],int n){
+        for(int i=0 ; i<n ; i++){
+        arr[i] = rand();
+    }
+        
+    }
 
 
 }
@@ -153,14 +162,20 @@ int main(){
     using namespace sortlib;
     int arr[]={ 33 , 31 ,40 , 8 , 12 , 17 ,8, 25 ,42};
     int n = sizeof(arr)/ sizeof(arr[0]);
-//    BubbleSort(arr , n);
-//    print(arr , n);
+    
+    
+    //BubbleSort(arr , n);
+    //print(arr , n);
     //CountSort(arr , n);
     //print(arr , n);
 //    ShellSort(arr, n);
 //    print(arr , n);
     quick_sort(arr,0,n-1);
     print(arr,n);
+
+    int arr1[100];
+    generateRandom(arr1,100);
+    BubbleSort(arr1,100);
 
 
 
