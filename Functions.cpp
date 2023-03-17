@@ -5,13 +5,6 @@ using namespace std;
 
 namespace sortlib 
 {
-
-    template<typename T>
-
-    T sum (T x , T y){
-        return x + y;
-    }
-
     template <typename T>
 
     void BubbleSort( T arr[] , int n){
@@ -25,15 +18,6 @@ namespace sortlib
         }
     }
 
-    template <typename T>
-    void print(T arr[] ,int n){
-        for(int i=0 ; i<n ; i++){
-            cout<<arr[i]<<" ";
-        }
-
-        cout<<endl;
-
-    }
 
     template <typename T>
 
@@ -67,6 +51,48 @@ namespace sortlib
         }
     }
 
+
+    template <typename T>
+    void ShellSort(T arr[], int n){
+        int r=2;
+        int h = n/r;
+        while(h!=1){
+        for(int i=0 ; i<h  ; i++){
+            if(arr[i] > arr[i+h]){
+                swap(arr[i] , arr[i+h]);
+            }
+        }
+        r = r*2;
+        h = n/(r);
+        }
+        int j=1;
+        for(int i=1 ; i<n; i++ ){
+            j=i;
+            while(j>0 and arr[j-1]>arr[j]){
+                swap(arr[j] , arr[j-1]);
+                j--;
+            }    
+        }
+
+
+    }
+
+
+
+
+
+
+    template <typename T>
+    void print(T arr[] ,int n){
+        for(int i=0 ; i<n ; i++){
+            cout<<arr[i]<<" ";
+        }
+
+        cout<<endl;
+
+    }
+
+
 };
 
 
@@ -78,13 +104,16 @@ int main(){
 
 
     using namespace sortlib;
-    int arr[9]={ 4 ,5 , 7 ,9 ,3,45  ,4 , 1 , 4,};
-    BubbleSort(arr , 9);
-    print(arr , 9);
-    CountSort(arr , 9);
-    print(arr , 9);
+    int arr[]={ 33 , 31 ,40 , 8 , 12 , 17 ,8, 25 ,42};
+    int n = sizeof(arr)/ sizeof(arr[0]);
+    BubbleSort(arr , n);
+    print(arr , n);
+    //CountSort(arr , n);
+    //print(arr , n);
+    ShellSort(arr, n);
+    print(arr , n);
 
-    int x = 10 , y=45 ;
-    cout<< sum(x,y)<<endl;
+
+
 
 }
