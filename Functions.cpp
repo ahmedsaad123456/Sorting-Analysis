@@ -128,9 +128,24 @@ namespace sortlib
             quick_sort(arr ,Pivot+1, right);
         }
     }
-
-
+    //-------------------------------------------
+    //Selection Sort
+    template <typename T>
+    void selectionSort(T arr[] , int n){
+        for(int i = 0 ; i < n-2 ; i++)
+        {
+            int min = i;
+            for(int j = i+1 ; j < n-1 ; j++)
+            {
+                if(arr[j] < arr[min])
+                    min = j ;
+            }
+            if (min != i)
+                swap(arr[i] , arr[min]);
+        }
+    }
    //--------------------------------------------
+
    //Print
     template <typename T>
     void print(T arr[] ,int n){
@@ -188,6 +203,7 @@ int main(){
 //    ShellSort(arr, n);
 //    print(arr , n);
     quick_sort(arr,0,n-1);
+    selectionSort(arr , n);
     print(arr,n);
 
     CalculateTime();
