@@ -159,7 +159,8 @@ namespace sortlib
     template<typename T>
     void generateRandom (T arr[],int n){
         for(int i=0 ; i<n ; i++){
-        arr[i] = rand();
+            srand(time(0));
+            arr[i] = rand();
     }
         
     }
@@ -171,11 +172,11 @@ namespace sortlib
             int arr1[arr[i]];
             generateRandom(arr1,arr[i]);
             auto start = high_resolution_clock::now();
-            quick_sort(arr1,0,arr[i]-1);
+            CountSort(arr1 , arr[i]);
             auto end = high_resolution_clock::now();
             auto time = duration_cast<microseconds>(end-start);
 
-            cout<<"Time Taken by QuickSort with size "<<arr[i]<<" = "<< time.count()<<"  microseconds"<<endl;
+            cout<<"Time Taken by countSort with size "<<arr[i]<<" = "<< time.count()<<"  microseconds"<<endl;
 
         }
     }
