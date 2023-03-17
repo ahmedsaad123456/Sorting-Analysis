@@ -26,8 +26,8 @@ namespace sortlib
 
     void BubbleSort( T arr[] , int n){
 
-        for(int i=0 ; i<n ; i++){
-            for(int j=0 ; j<n-1 ; j++){
+        for(int i=0 ; i<n-1 ; i++){
+            for(int j=0 ; j<n-i-1 ; j++){
                 if(arr[j]> arr[j+1]){
                     swap(arr[j] , arr[j+1]);
                 }
@@ -171,11 +171,11 @@ namespace sortlib
             int arr1[arr[i]];
             generateRandom(arr1,arr[i]);
             auto start = high_resolution_clock::now();
-            CountSort(arr1 , arr[i]);
+            BubbleSort(arr1 , arr[i]);
             auto end = high_resolution_clock::now();
             auto time = duration_cast<microseconds>(end-start);
 
-            cout<<"Time Taken by countSort with size "<<arr[i]<<" = "<< time.count()<<"  microseconds"<<endl;
+            cout<<"Time Taken by BubbleSort with size "<<arr[i]<<" = "<< time.count()<<"  microseconds"<<endl;
 
         }
     }
@@ -196,8 +196,8 @@ int main(){
     int n = sizeof(arr)/ sizeof(arr[0]);
     
     
-    //BubbleSort(arr , n);
-    //print(arr , n);
+    BubbleSort(arr , n);
+    print(arr , n);
     //CountSort(arr , n);
     //print(arr , n);
 //    ShellSort(arr, n);
