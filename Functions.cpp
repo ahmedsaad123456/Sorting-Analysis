@@ -2,6 +2,7 @@
 #include <algorithm>
 
 using namespace std;
+using namespace std::chrono;
 
 namespace sortlib 
 {
@@ -147,6 +148,22 @@ namespace sortlib
     }
         
     }
+    //--------------------------------------------
+    //calculate Time on each dataset
+    void CalculateTime(){
+        int arr[7]  ={200 , 500 , 1000 , 5000 , 10000 , 20000 , 50000};
+        for(int i=0 ; i<7; i++){
+            int arr1[arr[i]];
+            generateRandom(arr1,arr[i]);
+            auto start = high_resolution_clock::now();
+            quick_sort(arr1,0,arr[i]-1);
+            auto end = high_resolution_clock::now();
+            auto time = duration_cast<microseconds>(end-start);
+
+            cout<<"Time Taken by QuickSort with size "<<arr[i]<<" = "<< time.count()<<"  microseconds"<<endl;
+
+        }
+    }
 
 
 }
@@ -173,9 +190,17 @@ int main(){
     quick_sort(arr,0,n-1);
     print(arr,n);
 
-    int arr1[100];
-    generateRandom(arr1,100);
-    BubbleSort(arr1,100);
+    CalculateTime();
+
+
+
+
+
+
+    
+    
+    
+    
 
 
 
