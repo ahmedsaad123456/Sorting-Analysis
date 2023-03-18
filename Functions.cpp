@@ -225,8 +225,8 @@ namespace sortlib
     //Generate array of random numbers
     template<typename T>
     void generateRandom (T arr[],int n){
+        srand(time(0));
         for(int i=0 ; i<n ; i++){
-            srand(time(0));
             arr[i] = rand();
     }
         
@@ -239,11 +239,11 @@ namespace sortlib
             int arr1[arr[i]];
             generateRandom(arr1,arr[i]);
             auto start = high_resolution_clock::now();
-            BubbleSort(arr1 , arr[i]);
+            CountSort(arr1 , arr[i]);
             auto end = high_resolution_clock::now();
             auto time = duration_cast<microseconds>(end-start);
 
-            cout<<"Time Taken by BubbleSort with size "<<arr[i]<<" = "<< time.count()<<"  microseconds"<<endl;
+            cout<<"Time Taken by CountSort with size "<<arr[i]<<" = "<< time.count()<<"  microseconds"<<endl;
         }
     }
 
