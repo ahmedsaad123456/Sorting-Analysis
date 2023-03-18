@@ -154,7 +154,7 @@ namespace sortlib
        int n2 = right - middle;
 
        //create temporary
-       int L[n1] , R[n2] ;
+       T L[n1] , R[n2] ;
 
        //copy data to temporary arrays
        for (i = 0 ; i < n1 ; i++)
@@ -244,7 +244,6 @@ namespace sortlib
             auto time = duration_cast<microseconds>(end-start);
 
             cout<<"Time Taken by BubbleSort with size "<<arr[i]<<" = "<< time.count()<<"  microseconds"<<endl;
-
         }
     }
 
