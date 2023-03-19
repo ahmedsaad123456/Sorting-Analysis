@@ -66,16 +66,16 @@ namespace sortlib
     //Shell sort
     template <typename T>
     void ShellSort(T arr[], int n){
-        int r=2;
-        int h = n/r;
-        while(h!=1){
-        for(int i=0 ; i<h  ; i++){
+
+        int h = n;
+        h /= 2;
+        while(h != 1){
+        for(int i=0 ; i < h  ; i++){
             if(arr[i] > arr[i+h]){
                 swap(arr[i] , arr[i+h]);
             }
         }
-        r = r*2;
-        h = n/(r);
+        h /= 2;
         }
         int j=1;
         for(int i=1 ; i<n; i++ ){
@@ -254,21 +254,21 @@ int main(){
 
 
     using namespace sortlib;
-    int arr[]={ 4,1,3,4,3};
+    int arr[]={ 33 , 31 ,40 , 8 , 12 , 17 ,8, 25 ,42};
     int n = sizeof(arr)/ sizeof(arr[0]);
     
     
-    //BubbleSort(arr , n);
-    //print(arr , n);
-    CountSort(arr , n);
-    print(arr , n);
-//    ShellSort(arr, n);
+//    BubbleSort(arr , n);
 //    print(arr , n);
-    // quick_sort(arr,0,n-1);
-    // selectionSort(arr , n);
-    // print(arr,n);
+    //CountSort(arr , n);
+    //print(arr , n);
+    ShellSort(arr, n);
+//    print(arr , n);
+//    quick_sort(arr,0,n-1);
+//    selectionSort(arr , n);
+    print(arr,n);
 
-    // CalculateTime();
+//    CalculateTime();
 
 
 
