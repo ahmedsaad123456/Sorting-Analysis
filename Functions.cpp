@@ -69,22 +69,19 @@ namespace sortlib
 
         int gap = n/2;
 
-        while(gap != 1){
-        for(int i=0 ; i < gap  ; i++){
-            if(arr[i] > arr[i+gap]){
-                swap(arr[i] , arr[i+gap]);
+        while(gap>0){
+            for(int i=gap ; i <n  ; i++){
+                int j=i;
+                while(j>=gap && arr[j-gap]>arr[j] ){
+                    swap(arr[j] , arr[j-1]);
+                    j= j-gap;
+                }
             }
+
+            gap /= 2;
         }
-        gap /= 2;
-        }
-        int j=1;
-        for(int i=1 ; i<n; i++ ){
-            j=i;
-            while(j>0 and arr[j-1]>arr[j]){
-                swap(arr[j] , arr[j-1]);
-                j--;
-            }    
-        }
+
+        
     }
     //--------------------------------------------
     //Quick sort
@@ -234,11 +231,11 @@ namespace sortlib
             int arr1[arr[i]];
             generateRandom(arr1,arr[i]);
             auto start = high_resolution_clock::now();
-            CountSort(arr1 , arr[i]);
+            ShellSort(arr1 , arr[i]);
             auto end = high_resolution_clock::now();
             auto time = duration_cast<microseconds>(end-start);
 
-            cout<<"Time Taken by CountSort with size "<<arr[i]<<" = "<< time.count()<<"  microseconds"<<endl;
+            cout<<"Time Taken by shellSort with size "<<arr[i]<<" = "<< time.count()<<"  microseconds"<<endl;
         }
     }
 
@@ -254,7 +251,7 @@ int main(){
 
 
     using namespace sortlib;
-    int arr[]={ 33 , 31 ,40 , 8 , 12 , 17 ,8, 25 ,42};
+    int arr[]={ 8,2,5,1,11,7,25,0};
     int n = sizeof(arr)/ sizeof(arr[0]);
     
     
@@ -268,7 +265,7 @@ int main(){
 //    selectionSort(arr , n);
     print(arr,n);
 
-//    CalculateTime();
+    CalculateTime();
 
 
 
