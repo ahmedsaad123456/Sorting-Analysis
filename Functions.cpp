@@ -36,27 +36,22 @@ namespace sortlib
     }
     //--------------------------------------------
     //Count sort
-    template <typename T>
+    void CountSort(int arr[] , int n){
+        // ex : arr= [4 , 1 , 3 , 4 , 3]
+        int max=*max_element(arr , arr+n); // get the max element
+        
+        int arrIndex[max+1] = {0};  // create new array index with size of (max+1)
 
-    void CountSort(T arr[] , int n){
-        int max=0;
-        for(int i = 0 ; i< n ; i++){
-            if(arr[i]>max){
-                max = arr[i];
-            }
-        }
-        T arrIndex[max+1] = {0};
-
-        int value=0;
-
+        // Add 1 to the index of the arrindex if the number of the index exists in the arr as value 
         for(int i =0 ; i<n ; i++){
-            value = arr[i];
-            arrIndex[value] = arrIndex[value]+1;
+            arrIndex[arr[i]] ++;
         }
+        // after this loop the arrindex will be [0 , 1 , 0 , 2 , 2]
 
+        // sort the data from the arrindex to the arr 
         int i=0 , j=0;
         while(i<max+1){
-            if(arrIndex[i]!=0){
+            if(arrIndex[i]!=0){        // arrIndex[i]==0 means the i number does not exist in the arr
                 arr[j] = i;
                 arrIndex[i]= arrIndex[i]-1;
                 j++;
@@ -64,8 +59,8 @@ namespace sortlib
             else{
                 i++;
             }
-
         }
+        // after this loop the arr will be [1 , 3 , 3 , 4 , 4]
     }
     //--------------------------------------------
     //Shell sort
@@ -259,21 +254,21 @@ int main(){
 
 
     using namespace sortlib;
-    int arr[]={ 33 , 31 ,40 , 8 , 12 , 17 ,8, 25 ,42};
+    int arr[]={ 4,1,3,4,3};
     int n = sizeof(arr)/ sizeof(arr[0]);
     
     
-    BubbleSort(arr , n);
-    print(arr , n);
-    //CountSort(arr , n);
+    //BubbleSort(arr , n);
     //print(arr , n);
+    CountSort(arr , n);
+    print(arr , n);
 //    ShellSort(arr, n);
 //    print(arr , n);
-    quick_sort(arr,0,n-1);
-    selectionSort(arr , n);
-    print(arr,n);
+    // quick_sort(arr,0,n-1);
+    // selectionSort(arr , n);
+    // print(arr,n);
 
-    CalculateTime();
+    // CalculateTime();
 
 
 
