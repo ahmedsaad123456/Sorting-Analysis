@@ -73,7 +73,7 @@ namespace sortlib
             for(int i=gap ; i <n  ; i++){
                 int j=i;
                 while(j>=gap && arr[j-gap]>arr[j] ){
-                    swap(arr[j] , arr[j-1]);
+                    swap(arr[j] , arr[j-gap]);
                     j= j-gap;
                 }
             }
@@ -251,7 +251,7 @@ int main(){
 
 
     using namespace sortlib;
-    int arr[]={ 8,2,5,1,11,7,25,0};
+    int arr[]={ 42  , 2 ,15 ,17 ,22 ,30, 199};
     int n = sizeof(arr)/ sizeof(arr[0]);
     
     
