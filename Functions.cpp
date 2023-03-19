@@ -67,15 +67,15 @@ namespace sortlib
     template <typename T>
     void ShellSort(T arr[], int n){
 
-        int h = n;
-        h /= 2;
-        while(h != 1){
-        for(int i=0 ; i < h  ; i++){
-            if(arr[i] > arr[i+h]){
-                swap(arr[i] , arr[i+h]);
+        int gap = n/2;
+
+        while(gap != 1){
+        for(int i=0 ; i < gap  ; i++){
+            if(arr[i] > arr[i+gap]){
+                swap(arr[i] , arr[i+gap]);
             }
         }
-        h /= 2;
+        gap /= 2;
         }
         int j=1;
         for(int i=1 ; i<n; i++ ){
