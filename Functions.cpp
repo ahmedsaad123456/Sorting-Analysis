@@ -213,22 +213,38 @@ namespace sortlib
         cout<<endl;
     }
     //--------------------------------------------
+//    //Generate array of random numbers
+//    template<typename T>
+//    void generateRandom (T arr[],int n){
+//        srand(time(0));
+//        for(int i=0 ; i<n ; i++){
+//            arr[i] = rand();
+//    }
+//
+//    }
+
     //Generate array of random numbers
-    template<typename T>
-    void generateRandom (T arr[],int n){
-        srand(time(0));
-        for(int i=0 ; i<n ; i++){
-            arr[i] = rand();
-    }
-        
+    void generateRandom(int arr[], int n, int minVal, int maxVal) {
+        random_device rd; // obtain a random seed from the OS
+        mt19937 gen(rd()); // seed the generator
+        uniform_int_distribution<> dis(minVal, maxVal); // define the range of values for the distribution
+
+        for (int i = 0; i < n; ++i) {
+            arr[i] = dis(gen); // generate a random number in the range [minVal, maxVal]
+        }
     }
     //--------------------------------------------
     //calculate Time on each dataset
     void CalculateTime(){
         int arr[7]  ={200 , 500 , 1000 , 5000 , 10000 , 20000 , 50000};
-        for(int i=0 ; i<7; i++){
+        for(int i=0 ; i<2; i++){
             int arr1[arr[i]];
-            generateRandom(arr1,arr[i]);
+
+//            int min = 0;
+//            int max = 1000;
+            generateRandom(arr1,arr[i] , 0 , 1000);
+            print(arr1 , arr[i]);
+            cout << endl;
             auto start = high_resolution_clock::now();
             CountSort(arr1 , arr[i]);
             auto end = high_resolution_clock::now();
