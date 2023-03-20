@@ -37,7 +37,6 @@ namespace sortlib
     //--------------------------------------------
     //Count sort
     void CountSort(int arr[] , int n){
-        // ex : arr= [4 , 1 , 3 , 4 , 3]
         int max=*max_element(arr , arr+n); // get the max element
         
         int arrIndex[max+1] = {0};  // create new array index with size of (max+1)
@@ -46,21 +45,21 @@ namespace sortlib
         for(int i =0 ; i<n ; i++){
             arrIndex[arr[i]] ++;
         }
-        // after this loop the arrindex will be [0 , 1 , 0 , 2 , 2]
 
-        // sort the data from the arrindex to the arr 
-        int i=0 , j=0;
-        while(i<max+1){
-            if(arrIndex[i]!=0){        // arrIndex[i]==0 means the i number does not exist in the arr
-                arr[j] = i;
-                arrIndex[i]= arrIndex[i]-1;
-                j++;
-            }
-            else{
-                i++;
-            }
+        for(int i =1 ; i<max+1 ; i++){
+            arrIndex[i] += arrIndex[i-1];
         }
-        // after this loop the arr will be [1 , 3 , 3 , 4 , 4]
+        
+        int sortarr[n];
+
+        for(int i=n-1 ; i>=0 ; i--){
+            sortarr[arrIndex[arr[i]]-1]=arr[i];
+            arrIndex[arr[i]]--;
+
+        }
+        for(int i=0 ; i<n ; i++){
+            arr[i]= sortarr[i];
+        }
     }
     //--------------------------------------------
     //Shell sort
@@ -231,11 +230,11 @@ namespace sortlib
             int arr1[arr[i]];
             generateRandom(arr1,arr[i]);
             auto start = high_resolution_clock::now();
-            ShellSort(arr1 , arr[i]);
+            CountSort(arr1 , arr[i]);
             auto end = high_resolution_clock::now();
             auto time = duration_cast<microseconds>(end-start);
 
-            cout<<"Time Taken by shellSort with size "<<arr[i]<<" = "<< time.count()<<"  microseconds"<<endl;
+            cout<<"Time Taken by countSort with size "<<arr[i]<<" = "<< time.count()<<"  microseconds"<<endl;
         }
     }
 
@@ -251,33 +250,51 @@ int main(){
 
 
     using namespace sortlib;
-    int arr[]={ 42  , 2 ,15 ,17 ,22 ,30, 199};
+    int arr[]={ 4,1,3,4,3};
     int n = sizeof(arr)/ sizeof(arr[0]);
     
     
 //    BubbleSort(arr , n);
 //    print(arr , n);
-    //CountSort(arr , n);
-    //print(arr , n);
-    ShellSort(arr, n);
+    CountSort(arr , n);
+    print(arr , n);
+    //ShellSort(arr, n);
 //    print(arr , n);
 //    quick_sort(arr,0,n-1);
 //    selectionSort(arr , n);
-    print(arr,n);
+   // print(arr,n);
 
     CalculateTime();
 
-
-
-
-
-
-    
-    
-    
-    
-
-
-
-
 }
+
+
+
+
+
+// void CountSort(int arr[] , int n){
+//         // ex : arr= [4 , 1 , 3 , 4 , 3]
+//         int max=*max_element(arr , arr+n); // get the max element
+        
+//         int arrIndex[max+1] = {0};  // create new array index with size of (max+1)
+
+//         // Add 1 to the index of the arrindex if the number of the index exists in the arr as value 
+//         for(int i =0 ; i<n ; i++){
+//             arrIndex[arr[i]] ++;
+//         }
+//         // after this loop the arrindex will be [0 , 1 , 0 , 2 , 2]
+
+//         // sort the data from the arrindex to the arr 
+//         int i=0 , j=0;
+//         while(i<max+1){
+//             if(arrIndex[i]!=0){        // arrIndex[i]==0 means the i number does not exist in the arr
+//                 arr[j] = i;
+//                 arrIndex[i]= arrIndex[i]-1;
+//                 j++;
+//             }
+//             else{
+//                 i++;
+//             }
+//         }
+//         // after this loop the arr will be [1 , 3 , 3 , 4 , 4]
+//     }
