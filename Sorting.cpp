@@ -226,11 +226,11 @@ void CalculateTime(){
         int arr1[arr[i]];
         generateRandom(arr1,arr[i]);
         auto start = high_resolution_clock::now();
-        sortlib::quick_sort(arr1 ,0, arr[i]-1);
+        sortlib::Insertion_sort(arr1 , arr[i]);
         auto end = high_resolution_clock::now();
         auto time = duration_cast<microseconds>(end-start);
 
-        cout<<"Time Taken by quick sort with size "<<arr[i]<<" = "<< time.count()<<"  microseconds"<<endl;
+        cout<<"Time Taken by Insertion sort with size "<<arr[i]<<" = "<< time.count()<<"  microseconds"<<endl;
         cout << "------------------------------------------------------------"<<endl;
 
     }
